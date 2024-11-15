@@ -1,6 +1,15 @@
-const express = require('express')
+
+const express = require('express');
+const { default: connectDB } = require('./src/db');
 const app = express()
-const port = 5000
+require("dotenv").config();
+const port = process.env.PORT || 5000
+
+// Middleware
+app.use(express.json());
+
+// Connect to Database
+connectDB();
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
